@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="easyui-navpanel">
+        <header>
+            <div class="m-toolbar">
+                <font color="black" size=3><span class="m-title"><b><center>Ubah aplikasi pada contoh stemming menjadi aplikasi tokenisasi</b></center>.</span>
+            </div>
+			
+        </header>
+			<div style="padding:0 70px; margin:70px auto;">
+            <div>
+			<span color="red" size=5 class="m-title"><center><b>👇Tulis Input Di Bawah Ini👇</b></Center></span>
+		<input class="easyui-textbox" name="kalimat" id="kalimat" type="text"  prompt="Masukan kalimat" style="width:100%;height:38px ; background-blue: #f1f1f1 ; outline: none;">
+		
+	<header>
+			
+			<span color="black" size=5 class="m-title"><b><center>Untuk Hasil Outputnya</b></center></span>	
+			
+	</header>
+	
+	<font color="blue" size=9><P id="inputan"></P>
+		<font color="red" size=8><p id="inputan_length"></p>
+	</div>
+			
+		<div style="text-align:center;margin-top:30px">
+			<a class="easyui-linkbutton" onclick="KETIK ENTER()" style="width:100%;height:40px"><span style="font-size:16px">KETIK ENTER</span></a>
+  </div>
+		<center><strong><font color="red" size=8><p id="inputan"></p></font></strong></center>
+		<center><strong><font color="blue" size=9><p id="inputan_length"></p></font></strong></center>
+	<footer>
+				</div>
+			</div>
+        </footer>
+    </div>
+        <script>
+		function reset()
+	{
+		location.reload();
+		document.getElementById("inputan").innerHTML = "";
+		document.getElementById("inputan_length").innerHTML = "";
+	}
+            function tokenisasi(value) {
+                words = value.split(" ")
+                wordmap = {}
+
+                for (let i = 0; i < words.length; i++) {
+                    let currentWordCount = wordmap[words[i]];
+                    let count = currentWordCount ? currentWordCount : 0;
+                    wordmap[words[i]] = count + 1;
+                }
+                document.getElementById('inputan').innerHTML = words.join("<br />");
+                document.getElementById('inputan_length').innerHTML = `Terdeteksi ada ${Object.keys(wordmap).length} kata.`;
+            }
+
+            document.getElementById('kalimat').addEventListener('keyup', event => {
+                tokenisasi(event.target.value)
+            })
+			function panjangkata(kata){
+		var n = kata.length;
+		return n;
+	}
+        </script>
+    </body>
+</html>
